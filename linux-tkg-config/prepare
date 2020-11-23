@@ -1,9 +1,9 @@
 #!/bin/bash
 
-ver54=78
+ver54=79
 ver57=19
 ver58=18
-ver59=9
+ver59=10
 ver510=rc4
 
 _tkg_initscript() {
@@ -890,12 +890,21 @@ _tkg_srcprep() {
   fi
 
   # default cpu gov
-  if [ "$_default_cpu_gov" = "performance" ]; then
-    sed -i -e 's/CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL=y/# CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL is not set/' ./.config
-    sed -i -e 's/# CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE is not set/CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y/' ./.config
-  elif [ "$_default_cpu_gov" = "ondemand" ]; then
-    sed -i -e 's/CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL=y/# CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL is not set/' ./.config
-    sed -i -e 's/# CONFIG_CPU_FREQ_DEFAULT_GOV_ONDEMAND is not set/CONFIG_CPU_FREQ_DEFAULT_GOV_ONDEMAND=y/' ./.config
+  if [ "$_basever" = "54" ] || [ "$_basever" = "57" ] || [ "$_basever" = "58" ]; then
+    if [ "$_default_cpu_gov" = "performance" ]; then
+      sed -i -e 's/CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL=y/# CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL is not set/' ./.config
+      sed -i -e 's/# CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE is not set/CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y/' ./.config
+    elif [ "$_default_cpu_gov" = "ondemand" ]; then
+      sed -i -e 's/CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL=y/# CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL is not set/' ./.config
+      sed -i -e 's/# CONFIG_CPU_FREQ_DEFAULT_GOV_ONDEMAND is not set/CONFIG_CPU_FREQ_DEFAULT_GOV_ONDEMAND=y/' ./.config
+    fi
+  else
+    if [ "$_default_cpu_gov" = "performance" ]; then
+      _custom_commandline+=" cpufreq.default_governor=performance"
+    elif [ "$_default_cpu_gov" = "ondemand" ]; then
+      _custom_commandline+=" cpufreq.default_governor=ondemand"
+    fi
+    msg2 "Command line set to \"$_custom_commandline\""
   fi
 
   # ACPI_CPUFREQ disablement
@@ -1062,14 +1071,14 @@ _tkg_srcprep() {
   fi
 
  # Anbox modules
-  if [ "$_basever" > "56" ]; then
+  if [ "$_basever" != "54" ]; then
     if [ -z "$_anbox" ]; then
       plain ""
       plain "Enable android modules for use with Anbox?"
       plain "https://github.com/anbox/anbox"
       read -rp "`echo $'    > N/y : '`" CONDITION12;
     fi
-    if [[ "$CONDITION12" =~ [yY] ]] || [ "$_zfsfix" = "true" ]; then
+    if [[ "$CONDITION12" =~ [yY] ]] || [ "$_anbox" = "true" ]; then
       echo "CONFIG_ASHMEM=y" >> ./.config
       echo "CONFIG_ANDROID=y" >> ./.config
       echo "CONFIG_ANDROID_BINDER_IPC=y" >> ./.config
