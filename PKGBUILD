@@ -44,7 +44,7 @@ fi
 if [ -n "$_custom_pkgbase" ]; then
   pkgbase="${_custom_pkgbase}"
 else
-  pkgbase=linux"${_basever}"-tkg-"${_cpusched}"${_compiler_name}
+  pkgbase=linux"${_basever}"-Sheena-"${_cpusched}"${_compiler_name}
 fi
 pkgname=("${pkgbase}" "${pkgbase}-headers")
 pkgver="${_basekernel}"."${_sub}"
