@@ -48,12 +48,12 @@ else
 fi
 pkgname=("${pkgbase}" "${pkgbase}-headers")
 pkgver="${_basekernel}"."${_sub}"
-pkgrel=96
+pkgrel=98
 pkgdesc='Linux-tkg'
 arch=('x86_64') # no i686 in here
 url="http://www.kernel.org/"
 license=('GPL2')
-makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'libelf' 'pahole' 'patchutils' 'flex' 'python-sphinx' 'python-sphinx_rtd_theme' 'graphviz' 'imagemagick' 'git')
+makedepends=('bison' 'xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'libelf' 'pahole' 'patchutils' 'flex' 'python-sphinx' 'python-sphinx_rtd_theme' 'graphviz' 'imagemagick' 'git')
 if [ "$_compiler_name" = "-llvm" ]; then
   makedepends+=( 'lld' 'clang' 'llvm')
 fi
@@ -91,7 +91,7 @@ case $_basever in
         	0012-linux-hardened.patch
 	)
 	sha256sums=('bf338980b1670bca287f9994b7441c2361907635879169c64ae78364efc5f491'
-            '69e2883eb909bb3bd2537236806b78f5c0ab093b56c03e0108c84476b60564ec'
+            'a6b8d5441519c1d15a3b402a7cb383825f582fe18a917848e78e134fc15280b9'
             'SKIP'
             '55dd5117c1da17c9ec38d7bc995958958bcc8b7ebcfd81de1d4c7650b85537ab'
             '1f4a20d6eaaa0d969af93152a65191492400c6aa838fc1c290b0dd29bb6019d8'
@@ -254,13 +254,13 @@ case $_basever in
         	0008-5.9-bcachefs.patch
 		0009-glitched-ondemand-bmq.patch
 		0009-glitched-bmq.patch
-		0009-prjc_v5.9-r2.patch
+		0009-prjc_v5.9-r3.patch
         	0011-ZFS-fix.patch
 	        #0012-linux-hardened.patch
 		0012-misc-additions.patch
 	)
 	sha256sums=('3239a4ee1250bf2048be988cc8cb46c487b2c8a0de5b1b032d38394d5c6b1a06'
-            'a0f35d02672add81985b2b3e899efafb119cb3a4587e0bfbe5a0ad19b739e993'
+            'd0a972758d97c97aaddee78fe6ba699cb75afd31363848a2fecaf395820d89fb'
             'SKIP'
             '958333f18de79c19ccf9eccb4e16e2a217a0619a1d96c2c65ccba23628815bab'
             '1e15fc2ef3fa770217ecc63a220e5df2ddbcf3295eb4a021171e7edd4c6cc898'
@@ -281,7 +281,7 @@ case $_basever in
             '14a261f1940a2b21b6b14df7391fc2c6274694bcfabfac3d0e985a67285dbfe7'
             '9fad4a40449e09522899955762c8928ae17f4cdaa16e01239fd12592e9d58177'
             'a557b342111849a5f920bbe1c129f3ff1fc1eff62c6bd6685e0972fc88e39911'
-            '11d2343174e5486e8ea1a1e98f9f6f1a1625043f6547484f5a729a83f94336eb'
+            '0d5fe3a9050536fe431564b221badb85af7ff57b330e3978ae90d21989fcad2d'
             '49262ce4a8089fa70275aad742fc914baa28d9c384f710c9a62f64796d13e104'
             '433b919e6a0be26784fb4304c43b1811a28f12ad3de9e26c0af827f64c0c316e')
 	;;
@@ -316,8 +316,9 @@ case $_basever in
         0011-ZFS-fix.patch
         #0012-linux-hardened.patch
         0012-misc-additions.patch
+        0013-v5.10-rc7-revert.patch
     )
-    sha256sums=('d139d4cc8eb8b27364adc774c0df0feac39389beb4357a36d628a48c92fed393'
+    sha256sums=('9f95194fc84eef01789f2ed6566518ef597e9c6541b640f7276f2a3ef1a221f2'
             'SKIP'
             '834247434877e4e76201ada7df35ebd4622116737e9650e0772f22d03083b426'
             '1e15fc2ef3fa770217ecc63a220e5df2ddbcf3295eb4a021171e7edd4c6cc898'
@@ -337,9 +338,10 @@ case $_basever in
             'b302ba6c5bbe8ed19b20207505d513208fae1e678cf4d8e7ac0b154e5fe3f456'
             '9fad4a40449e09522899955762c8928ae17f4cdaa16e01239fd12592e9d58177'
             'a557b342111849a5f920bbe1c129f3ff1fc1eff62c6bd6685e0972fc88e39911'
-            'a5149d7220457d30e03e6999f35a050bce46acafc6230bfe6b4d4994c523516d'
+            '0d5fe3a9050536fe431564b221badb85af7ff57b330e3978ae90d21989fcad2d'
             '49262ce4a8089fa70275aad742fc914baa28d9c384f710c9a62f64796d13e104'
-            '433b919e6a0be26784fb4304c43b1811a28f12ad3de9e26c0af827f64c0c316e')
+            '433b919e6a0be26784fb4304c43b1811a28f12ad3de9e26c0af827f64c0c316e'
+            '748f7d9db58946d82caf4fe1c76d4f855eee806aa140b0aa69236f1f89a3e5c6')
 	;;
 esac
 
