@@ -48,7 +48,7 @@ else
 fi
 pkgname=("${pkgbase}" "${pkgbase}-headers")
 pkgver="${_basekernel}"."${_sub}"
-pkgrel=98
+pkgrel=103
 pkgdesc='Linux-tkg'
 arch=('x86_64') # no i686 in here
 url="http://www.kernel.org/"
@@ -91,7 +91,7 @@ case $_basever in
         	0012-linux-hardened.patch
 	)
 	sha256sums=('bf338980b1670bca287f9994b7441c2361907635879169c64ae78364efc5f491'
-            'a6b8d5441519c1d15a3b402a7cb383825f582fe18a917848e78e134fc15280b9'
+            '2905aa650bba01773e008059468791106c1acae82a8a796115be6a416bc62e24'
             'SKIP'
             '55dd5117c1da17c9ec38d7bc995958958bcc8b7ebcfd81de1d4c7650b85537ab'
             '1f4a20d6eaaa0d969af93152a65191492400c6aa838fc1c290b0dd29bb6019d8'
@@ -260,7 +260,7 @@ case $_basever in
 		0012-misc-additions.patch
 	)
 	sha256sums=('3239a4ee1250bf2048be988cc8cb46c487b2c8a0de5b1b032d38394d5c6b1a06'
-            'd0a972758d97c97aaddee78fe6ba699cb75afd31363848a2fecaf395820d89fb'
+            'f3f1e9e8580523b2400642548ebd9118b1032997eb6d8c8da06891b6092b4ec6'
             'SKIP'
             '958333f18de79c19ccf9eccb4e16e2a217a0619a1d96c2c65ccba23628815bab'
             '1e15fc2ef3fa770217ecc63a220e5df2ddbcf3295eb4a021171e7edd4c6cc898'
@@ -288,7 +288,7 @@ case $_basever in
 	510)
 	opt_ver="5.8%2B"
     source=("$kernel_site"
-        #"$patch_site"
+        "$patch_site"
         "https://raw.githubusercontent.com/graysky2/kernel_gcc_patch/master/enable_additional_cpu_optimizations_for_gcc_v10.1%2B_kernel_v5.8%2B.patch"
         'config.x86_64' # stock Arch config
         #'config_hardened.x86_64' # hardened Arch config
@@ -316,11 +316,11 @@ case $_basever in
         0011-ZFS-fix.patch
         #0012-linux-hardened.patch
         0012-misc-additions.patch
-        0013-v5.10-rc7-revert.patch
     )
-    sha256sums=('9f95194fc84eef01789f2ed6566518ef597e9c6541b640f7276f2a3ef1a221f2'
+    sha256sums=('dcdf99e43e98330d925016985bfbc7b83c66d367b714b2de0cbbfcbf83d8ca43'
+            '1b5ca3683e8ae99eee357d11a2f2bfe21561883d6288e29d7bddf3eb0e007fcd'
             'SKIP'
-            '834247434877e4e76201ada7df35ebd4622116737e9650e0772f22d03083b426'
+            '346f1fb91784f978390834c36ec46995ae49688a06f907dc5870ddfae9d814d8'
             '1e15fc2ef3fa770217ecc63a220e5df2ddbcf3295eb4a021171e7edd4c6cc898'
             '66a03c246037451a77b4d448565b1d7e9368270c7d02872fbd0b5d024ed0a997'
             'f6383abef027fd9a430fd33415355e0df492cdc3c90e9938bf2d98f4f63b32e6'
@@ -332,16 +332,15 @@ case $_basever in
             '4231bd331289f5678b49d084698f0a80a3ae602eccb41d89e4f85ff4465eb971'
             '62496f9ca788996181ef145f96ad26291282fcc3fb95cdc04080dcf84365be33'
             '31b428c464905e44ed61cdcd1f42b4ec157ebe5a44cb5b608c4c99b466df66ba'
-            'f9f5f0a3a1d6c5233b9d7a4afe8ed99be97c4ff00a80bde4017d117c7d5f98ed'
+            '06e93b57b7a0b96aefc2c0ec12c3be28c6e8dc8506fa8a22c5a2313814a3c7f3'
             'fca63d15ca4502aebd73e76d7499b243d2c03db71ff5ab0bf5cf268b2e576320'
             '19661ec0d39f9663452b34433214c755179894528bf73a42f6ba52ccf572832a'
             'b302ba6c5bbe8ed19b20207505d513208fae1e678cf4d8e7ac0b154e5fe3f456'
             '9fad4a40449e09522899955762c8928ae17f4cdaa16e01239fd12592e9d58177'
             'a557b342111849a5f920bbe1c129f3ff1fc1eff62c6bd6685e0972fc88e39911'
-            '0d5fe3a9050536fe431564b221badb85af7ff57b330e3978ae90d21989fcad2d'
+            '3586c46f240e5bedcf32543085c2593c64a449d264506ed31260073b55a000f8'
             '49262ce4a8089fa70275aad742fc914baa28d9c384f710c9a62f64796d13e104'
-            '433b919e6a0be26784fb4304c43b1811a28f12ad3de9e26c0af827f64c0c316e'
-            '748f7d9db58946d82caf4fe1c76d4f855eee806aa140b0aa69236f1f89a3e5c6')
+            '433b919e6a0be26784fb4304c43b1811a28f12ad3de9e26c0af827f64c0c316e')
 	;;
 esac
 
