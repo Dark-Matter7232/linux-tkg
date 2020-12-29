@@ -1,10 +1,10 @@
 #!/bin/bash
 
-ver54=84
+ver54=85
 ver57=19
 ver58=18
-ver59=15
-ver510=1
+ver59=16
+ver510=3
 
 _tkg_initscript() {
   # Load external configuration file if present. Available variable values will overwrite customization.cfg ones.
@@ -368,6 +368,8 @@ _tkg_srcprep() {
     rev=3
   elif [ "$_basever" = "59" ]; then
     rev=3
+  elif [ "$_basever" = "510" ]; then
+    rev=1
   else
     rev=0
   fi
